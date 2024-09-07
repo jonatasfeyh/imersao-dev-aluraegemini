@@ -1,25 +1,36 @@
 function pesquisar() {
-    // Obtém a seção onde os resultados serão exibidos
-    let section = document.getElementById("resultados-pesquisa");
 
-    // Inicializa uma string vazia para armazenar os resultados
-    let resultados = "";
-  
-    // Itera sobre cada dado na lista de dados
-    for (let dado of dados) {
-      // Cria o HTML para cada item de resultado
-      resultados += `
-        <div class="item-resultado"> 
-          <h2>
-            <p>${dado.titulo}</p>
-          </h2>
-          <img class="imagem-redonda" src=${dado.imagem} class="foto" alt="Imagem de Quem Somos?">
-          <p class="descricao-meta">${dado.descricao}</p>
-          <a href=${dado.link} target="_blank">Saiba mais</a>
-        </div>
-      `;
-    }
-  
-    // Atribui o HTML gerado à seção de resultados
-    section.innerHTML = resultados;
+  let section = document.getElementById("resultados-pesquisa")
+
+  let campoPesquisa = document.getElementById("campo-de-pesquisa").value
+  console.log(campoPesquisa)
+
+  if (!campoPesquisa == "") {
+      section.innerHTML = "<p>Nada foi encontrado</p>"
+      return
   }
+
+  let resultados = "";
+  let titulo = "";
+  let descricao = "";
+
+  for (let dado of dados) {
+      titulo = dado.titulo.toLowerCase()
+      descricao = dado.descricao.toLowerCase()
+
+      if (dado.titulo.includes(campoPesquisa) || descricao.includes(campoPesquisa)) {
+
+          resultados += `
+      <div class="item-resultado"> 
+        <h2>
+          <p>${dado.titulo}</p>
+        </h2>
+        <img class="imagem-redonda" src=${dado.imagem} class="foto" alt="Imagem de Quem Somos?">
+        <p class="descricao-meta">${dado.descricao}</p>
+        <a href=${dado.link} target="_blank">Saiba mais</a>
+      </div>
+    `
+      }
+  }
+  section.innerHTML = resultados;
+}

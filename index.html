@@ -12,7 +12,13 @@
     </header>
     <main>
         <section>
-        <input type="text" placeholder="Digite o nome do personagem"> 
+        <input type="text" placeholder="Pesquise Sobre Nós" id="campo-de-pesquisa" list="sugestoes">
+        <datalist id="sugestoes">
+            <option value="Quem Somos?">
+            <option value="Tecnologias">
+            <option value="Etapas">
+            <option value="Benefícios">
+        </datalist> 
         <button onclick="pesquisar()">Search</button>
         </section>
         <section class="resultados-pesquisa"
